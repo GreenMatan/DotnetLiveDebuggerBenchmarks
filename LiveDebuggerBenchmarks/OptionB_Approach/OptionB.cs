@@ -71,11 +71,13 @@ namespace LiveDebugger.OptionB_Approach
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void LogLocal<TLocal>(uint index, TLocal local, LiveDebuggerMethodState state)
         {
+            FakeSerializer.SerializeSingle(local);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void LogLocalByRef<TLocal>(uint index, ref TLocal local, LiveDebuggerMethodState state)
         {
+            FakeSerializer.SerializeSingle(local);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
