@@ -1,11 +1,11 @@
-﻿using LiveDebuggerPlayground.Common;
-using LiveDebuggerPlayground.OptionB_Approach;
+﻿using LiveDebugger.Common;
+using LiveDebugger.OptionB_Approach;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace LiveDebuggerPlayground.Benchmarks
+namespace LiveDebugger.Benchmarks
 {
     internal unsafe static class OptionB_BenchmarkHelpers
     {

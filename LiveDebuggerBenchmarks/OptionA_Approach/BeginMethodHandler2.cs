@@ -1,7 +1,7 @@
-﻿using LiveDebuggerPlayground.Common;
+﻿using LiveDebugger.Common;
 using System;
 
-namespace LiveDebuggerPlayground.OptionA_Approach
+namespace LiveDebugger.OptionA_Approach
 {
     internal class BeginMethodHandler<TIntegration, TTarget, TArg1, TArg2>
     {

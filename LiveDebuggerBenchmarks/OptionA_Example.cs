@@ -1,8 +1,8 @@
-﻿using LiveDebuggerPlayground.Common;
-using LiveDebuggerPlayground.OptionA_Approach;
+﻿using LiveDebugger.Common;
+using LiveDebugger.OptionA_Approach;
 using System;
 
-namespace LiveDebuggerPlayground
+namespace LiveDebugger
 {
     /// <summary>
     /// Pros:

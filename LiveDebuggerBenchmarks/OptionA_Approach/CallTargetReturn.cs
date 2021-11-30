@@ -1,4 +1,4 @@
-﻿namespace LiveDebuggerPlayground.OptionA_Approach
+﻿namespace LiveDebugger.OptionA_Approach
 {
     public class CallTargetReturn<TReturn>
     {

@@ -1,4 +1,4 @@
-﻿namespace LiveDebuggerPlayground.Common
+﻿namespace LiveDebugger.Common
 {
     class Person
     {

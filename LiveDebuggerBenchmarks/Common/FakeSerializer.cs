@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LiveDebuggerPlayground.Common
+namespace LiveDebugger.Common
 {
     public static class FakeSerializer
     {

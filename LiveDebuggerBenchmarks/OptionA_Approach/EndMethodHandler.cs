@@ -1,7 +1,7 @@
-﻿using LiveDebuggerPlayground.Common;
+﻿using LiveDebugger.Common;
 using System;
 
-namespace LiveDebuggerPlayground.OptionA_Approach
+namespace LiveDebugger.OptionA_Approach
 {
     internal class EndMethodHandler<TIntegration, TTarget, TReturn>
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace LiveDebuggerPlayground.Common
+namespace LiveDebugger.Common
 {
     public readonly struct LiveDebuggerMethodState<T>
     {

@@ -1,8 +1,8 @@
 ﻿using BenchmarkDotNet.Running;
-using LiveDebuggerPlayground.Benchmarks;
+using LiveDebugger.Benchmarks;
 using System.Linq;
 
-namespace LiveDebuggerPlayground
+namespace LiveDebugger
 {
     internal partial class Program
     {

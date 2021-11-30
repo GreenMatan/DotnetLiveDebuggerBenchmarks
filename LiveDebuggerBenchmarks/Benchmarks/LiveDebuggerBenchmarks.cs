@@ -1,8 +1,8 @@
 ﻿using BenchmarkDotNet.Attributes;
-using LiveDebuggerPlayground.Common;
+using LiveDebugger.Common;
 using System.Numerics;
 
-namespace LiveDebuggerPlayground.Benchmarks
+namespace LiveDebugger.Benchmarks
 {
     [MemoryDiagnoser]
     [DisassemblyDiagnoser]
