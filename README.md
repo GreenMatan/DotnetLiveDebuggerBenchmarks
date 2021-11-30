@@ -1,10 +1,11 @@
-# DotnetLiveDebuggerBenchmarks
-These benchmarks compares the two bytecode instrumentation strategies (by value and by ref) to implement the Method Probe in .NET.
+# .NET Live Debugger Method Probe Benchmarking
+These benchmarks compares the two bytecode instrumentation strategies of implementing the Method Probe in .NET as explained in the RFC.  
+Each strategy is tested by value and by ref leading to four methods of measurments (OptionA_ByValue, OptionA_ByRef, OptionB_ByValue and OptionB_ByRef).
 
 [.NET Live Debugger Bytecode Instrumentation for Method Probes RFC](https://docs.google.com/document/d/15atktdzQNgOSG81oC4_YJ67QVVzMcAXakBz1G-aXZ4g/edit#heading=h.a2uvr77xbrp)
 
 ## Benchmarks Explained
-In these benchmarks we are measuring the two instrumentation strategies explained in the RFC by pseudo-instrumenting a method that receives 100, 1000 and 2000 `System.Numeric.BigInteger` arguments.
+In these benchmarks we are measuring the instrumentations explained in the RFC by pseudo-instrumenting a method that receives 100, 1000 and 2000 `System.Numeric.BigInteger` arguments.
 
 ## Results
 
