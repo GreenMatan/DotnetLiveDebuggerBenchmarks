@@ -12,24 +12,24 @@ In these benchmarks we are measuring the instrumentation techniques as explained
 ### Method Probe with 100 Arguments Benchmark
 |                                 Method |       Mean |     Error |     StdDev |     Median |   Gen 0 | Code Size |  Gen 1 | Allocated |
 |--------------------------------------- |-----------:|----------:|-----------:|-----------:|--------:|----------:|-------:|----------:|
-|        OptionA_ByValue_100_Arguments_Benchmark |   6.079 ־¼s | 0.2363 ־¼s |  0.6780 ־¼s |   5.959 ־¼s |  1.2970 |     22 KB | 0.0153 |      8 KB |
-|  OptionA_ByRef_100_Arguments_Benchmark |   5.913 ־¼s | 0.2690 ־¼s |  0.7890 ־¼s |   5.759 ־¼s |  1.2970 |     14 KB | 0.0153 |      8 KB |
-|        OptionB_ByValue_100_Arguments_Benchmark |   4.560 ־¼s | 0.1349 ־¼s |  0.3915 ־¼s |   4.543 ־¼s |  1.0300 |     22 KB |      - |      6 KB |
-|  OptionB_ByRef_100_Arguments_Benchmark |   4.227 ־¼s | 0.1558 ־¼s |  0.4544 ־¼s |   4.168 ־¼s |  1.0300 |     24 KB |      - |      6 KB |
+|  OptionA_ByValue_100_Arguments_Benchmark |   5.062 us | 0.1722 us | 0.4942 us |   5.059 us |  1.0300 |     22 KB |      - |      6 KB |
+|    OptionA_ByRef_100_Arguments_Benchmark |   4.560 us | 0.1387 us | 0.3957 us |   4.550 us |  1.0300 |     14 KB |      - |      6 KB |
+|  OptionB_ByValue_100_Arguments_Benchmark |   4.427 us | 0.1405 us | 0.4097 us |   4.401 us |  1.0338 |     22 KB |      - |      6 KB |
+|    OptionB_ByRef_100_Arguments_Benchmark |   3.964 us | 0.1152 us | 0.3324 us |   3.923 us |  1.0338 |     24 KB |      - |      6 KB |
 
 ### Method Probe with 1000 Arguments Benchmark
 |                                 Method |       Mean |     Error |     StdDev |     Median |   Gen 0 | Code Size |  Gen 1 | Allocated |
 |--------------------------------------- |-----------:|----------:|-----------:|-----------:|--------:|----------:|-------:|----------:|
-|       OptionA_ByValue_1000_Arguments_Benchmark |  89.186 ־¼s | 2.6012 ־¼s |  7.6697 ־¼s |  88.486 ־¼s | 12.6953 |    147 KB | 1.5869 |     78 KB |
-| OptionA_ByRef_1000_Arguments_Benchmark |  91.354 ־¼s | 3.2139 ־¼s |  9.3241 ־¼s |  91.192 ־¼s | 12.6953 |    137 KB | 1.5869 |     78 KB |
-|       OptionB_ByValue_1000_Arguments_Benchmark |  58.321 ־¼s | 1.7210 ־¼s |  5.0474 ־¼s |  57.864 ־¼s | 10.1318 |    153 KB |      - |     63 KB |
-| OptionB_ByRef_1000_Arguments_Benchmark |  54.316 ־¼s | 1.3808 ־¼s |  4.0279 ־¼s |  54.404 ־¼s | 10.1318 |    122 KB |      - |     63 KB |
+| OptionA_ByValue_1000_Arguments_Benchmark |  71.851 us | 1.4279 us | 3.6602 us |  70.708 us | 10.1318 |    147 KB | 0.1221 |     63 KB |
+|   OptionA_ByRef_1000_Arguments_Benchmark |  72.171 us | 1.4084 us | 3.6104 us |  71.925 us | 10.1318 |    137 KB | 0.1221 |     63 KB |
+| OptionB_ByValue_1000_Arguments_Benchmark |  57.183 us | 1.2964 us | 3.7816 us |  56.035 us | 10.1318 |    153 KB |      - |     63 KB |
+|   OptionB_ByRef_1000_Arguments_Benchmark |  53.013 us | 1.0360 us | 1.4181 us |  52.764 us | 10.1929 |    122 KB |      - |     63 KB |
 
 ### Method Probe with 2000 Arguments Benchmark
 
 |                                 Method |       Mean |     Error |     StdDev |     Median |   Gen 0 | Code Size |  Gen 1 | Allocated |
 |--------------------------------------- |-----------:|----------:|-----------:|-----------:|--------:|----------:|-------:|----------:|
-|       OptionA_ByValue_2000_Arguments_Benchmark | 209.441 ־¼s | 5.4804 ־¼s | 15.9867 ־¼s | 208.294 ־¼s | 25.3906 |    295 KB | 4.8828 |    156 KB |
-| OptionA_ByRef_2000_Arguments_Benchmark | 207.990 ־¼s | 4.2951 ־¼s | 12.5968 ־¼s | 207.691 ־¼s | 25.3906 |    275 KB | 4.8828 |    156 KB |
-|       OptionB_ByValue_2000_Arguments_Benchmark | 188.412 ־¼s | 3.6874 ־¼s |  9.1143 ־¼s | 186.000 ־¼s |       - |    319 KB |      - |    125 KB |
-| OptionB_ByRef_2000_Arguments_Benchmark | 114.040 ־¼s | 2.4639 ־¼s |  7.2648 ־¼s | 112.066 ־¼s | 20.3857 |    244 KB |      - |    125 KB |
+| OptionA_ByValue_2000_Arguments_Benchmark | 180.951 us | 3.4748 us | 6.7773 us | 179.610 us | 20.2637 |    295 KB |      - |    125 KB |
+|   OptionA_ByRef_2000_Arguments_Benchmark | 180.393 us | 3.5930 us | 7.0922 us | 179.638 us | 20.2637 |    275 KB |      - |    125 KB |
+| OptionB_ByValue_2000_Arguments_Benchmark | 125.898 us | 2.4994 us | 4.8748 us | 124.146 us | 20.3857 |    319 KB |      - |    125 KB |
+|   OptionB_ByRef_2000_Arguments_Benchmark | 113.620 us | 2.2569 us | 3.5797 us | 113.232 us | 20.3857 |    244 KB |      - |    125 KB |
