@@ -102,29 +102,14 @@ namespace LiveDebugger
 
         const string BenchmarkCodeTemplate = @"
 [Benchmark]
-public unsafe void OPTION_NAME_NUM_OF_ARGS_Arguments_Benchmark()
+public unsafe void OPTION_NAME_BYREF_OR_BYVALUE_NUM_OF_ARGS_Arguments_Benchmark()
 {
     var bench = new LiveDebuggerBenchmarks();
     ARGS_INITIALIZE
-    OPTION_NAME_BenchmarkHelpers.Run<LiveDebuggerBenchmarks, ARGS_TYPES, string>(bench, ARGS_PASSING, &OPTION_NAME_DoSomething);
+    OPTION_NAME_BenchmarkHelpers.RUN_METHOD_NAME<LiveDebuggerBenchmarks, ARGS_TYPES, string>(bench, ARGS_PASSING, &OPTION_NAME_BYREF_OR_BYVALUE_DoSomething);
 }
 
-private static string OPTION_NAME_DoSomething(PASSED_ARGS)
-{
-    return string.Empty;
-}
-";
-
-        const string BenchmarkCodeByRefTemplate = @"
-[Benchmark]
-public unsafe void OPTION_NAME_NUM_OF_ARGS_Arguments_ByRef_Benchmark()
-{
-    var bench = new LiveDebuggerBenchmarks();
-    ARGS_INITIALIZE
-    OPTION_NAME_BenchmarkHelpers.RunByRef<LiveDebuggerBenchmarks, ARGS_TYPES, string>(bench, ARGS_PASSING, &OPTION_NAME_ByRef_DoSomething);
-}
-
-private static string OPTION_NAME_ByRef_DoSomething(PASSED_ARGS)
+private static string OPTION_NAME_BYREF_OR_BYVALUE_DoSomething(PASSED_ARGS)
 {
     return string.Empty;
 }
@@ -218,7 +203,7 @@ private static string OPTION_NAME_ByRef_DoSomething(PASSED_ARGS)
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static LiveDebuggerMethodState BeginMethod<TTarget, GENERIC_ARGS_MARKER>(TTarget instance, PASSING_GENERICS)
         {
-            FakeSerializer.Serialize(ARGS_PASSING);
+            FAKE_SERIALIZER_MARKER
             return LiveDebuggerMethodState.GetDefault();
         }";
 
@@ -226,7 +211,7 @@ private static string OPTION_NAME_ByRef_DoSomething(PASSED_ARGS)
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static LiveDebuggerMethodState BeginMethodByRef<TTarget, GENERIC_ARGS_MARKER>(TTarget instance, PASSING_BYREF_GENERICS)
         {
-            FakeSerializer.Serialize(ARGS_PASSING);
+            FAKE_SERIALIZER_MARKER
             return LiveDebuggerMethodState.GetDefault();
         }";
 
@@ -240,7 +225,7 @@ private static string OPTION_NAME_ByRef_DoSomething(PASSED_ARGS)
             int numOfArgs,
             PASSING_GENERICS)
         {
-            FakeSerializer.Serialize(ARGS_PASSING);
+            FAKE_SERIALIZER_MARKER
             return new LiveDebuggerMethodState<TReturn>(returnValue);
         }
 ";
@@ -255,37 +240,37 @@ private static string OPTION_NAME_ByRef_DoSomething(PASSED_ARGS)
             int numOfArgs,
             PASSING_BYREF_GENERICS)
         {
-            FakeSerializer.Serialize(ARGS_PASSING);
+            FAKE_SERIALIZER_MARKER
             return new LiveDebuggerMethodState<TReturn>(returnValue);
         }
 ";
 
         public static void Generate(int numOfArgs)
         {
-            // OptionA
+            // OptionA_ByValue
             var optionABenchmarkCode = ReplaceAll(BenchmarkCodeTemplate, numOfArgs, "OptionA");
             var optionA_BenchmarkHelpers = ReplaceAll(OptionATemplate, numOfArgs, "OptionA");
             var beginMethodCode = ReplaceAll(BeginMethodTemplate, numOfArgs, "OptionA");
             var endMethodCode = ReplaceAll(EndMethodTemplate, numOfArgs, "OptionA");
 
             // OptionA_ByRef
-            var optionAByRefBenchmarkCode = ReplaceAll(BenchmarkCodeByRefTemplate, numOfArgs, "OptionA");
-            var optionA_BenchmarkHelpers_ByRef = ReplaceAll(OptionAByRefTemplate, numOfArgs, "OptionA");
-            var beginMethodByRefCode = ReplaceAll(BeginMethodByRefTemplate, numOfArgs, "OptionA");
-            var endMethodByRefCode = ReplaceAll(EndMethodByRefTemplate, numOfArgs, "OptionA");
+            var optionAByRefBenchmarkCode = ReplaceAll(BenchmarkCodeTemplate, numOfArgs, "OptionA", isByRef: true);
+            var optionA_BenchmarkHelpers_ByRef = ReplaceAll(OptionAByRefTemplate, numOfArgs, "OptionA", isByRef: true);
+            var beginMethodByRefCode = ReplaceAll(BeginMethodByRefTemplate, numOfArgs, "OptionA", isByRef: true);
+            var endMethodByRefCode = ReplaceAll(EndMethodByRefTemplate, numOfArgs, "OptionA", isByRef: true);
 
-            // OptionB
+            // OptionB_ByValue
             var optionBBenchmarkCode = ReplaceAll(BenchmarkCodeTemplate, numOfArgs, "OptionB");
             var optionB_BenchmarkHelpers = ReplaceAll(OptionBTemplate, numOfArgs, "OptionB");
 
             // OptionB_ByRef
-            var optionBByRefBenchmarkCode = ReplaceAll(BenchmarkCodeByRefTemplate, numOfArgs, "OptionB");
-            var optionB_BenchmarkHelpers_ByRef = ReplaceAll(OptionBByRefTemplate, numOfArgs, "OptionB");
+            var optionBByRefBenchmarkCode = ReplaceAll(BenchmarkCodeTemplate, numOfArgs, "OptionB", isByRef: true);
+            var optionB_BenchmarkHelpers_ByRef = ReplaceAll(OptionBByRefTemplate, numOfArgs, "OptionB", isByRef: true);
 
             Debugger.Break();
         }
 
-        private static string ReplaceAll(string template, int numOfArgs, string optionName)
+        private static string ReplaceAll(string template, int numOfArgs, string optionName, bool isByRef = false)
         {
             const string GENERIC_ARGS_MARKER = nameof(GENERIC_ARGS_MARKER);
             const string PASSING_GENERICS = nameof(PASSING_GENERICS);
@@ -300,6 +285,9 @@ private static string OPTION_NAME_ByRef_DoSomething(PASSED_ARGS)
             const string PASSING_BYREF_GENERICS = nameof(PASSING_BYREF_GENERICS);
             const string ARGS_BYREF_PASSING = nameof(ARGS_BYREF_PASSING);
             const string WRITEARG_BYREF_MARKER = nameof(WRITEARG_BYREF_MARKER);
+            const string FAKE_SERIALIZER_MARKER = nameof(FAKE_SERIALIZER_MARKER);
+            const string BYREF_OR_BYVALUE = nameof(BYREF_OR_BYVALUE);
+            const string RUN_METHOD_NAME = nameof(RUN_METHOD_NAME);
 
             var range = Enumerable.Range(1, numOfArgs + 1);
 
@@ -313,6 +301,7 @@ private static string OPTION_NAME_ByRef_DoSomething(PASSED_ARGS)
             var passingGenericsByRef = string.Join(", ", range.Select(i => $"ref TArg{i} arg{i}"));
             var writeArgs = string.Join("\n", range.Select(i => $"OptionB.LogArg<TArg{i}>({i - 1}, arg{i}, state);"));
             var writeArgsByRef = string.Join("\n", range.Select(i => $"OptionB.LogArgByRef<TArg{i}>({i - 1}, ref arg{i}, state);"));
+            var fakeSerializers = string.Join("\n", range.Select(i => $"FakeSerializer.Serialize(arg{i});"));
 
             return template
                 .Replace(ARGS_INITIALIZE, argsInit)
@@ -326,7 +315,10 @@ private static string OPTION_NAME_ByRef_DoSomething(PASSED_ARGS)
                 .Replace(NUM_OF_ARGS, numOfArgs.ToString())
                 .Replace(PASSING_BYREF_GENERICS, passingGenericsByRef)
                 .Replace(ARGS_BYREF_PASSING, argsByRefPassing)
-                .Replace(WRITEARG_BYREF_MARKER, writeArgsByRef);
+                .Replace(WRITEARG_BYREF_MARKER, writeArgsByRef)
+                .Replace(FAKE_SERIALIZER_MARKER, fakeSerializers)
+                .Replace(BYREF_OR_BYVALUE, isByRef ? "ByRef" : "ByValue")
+                .Replace(RUN_METHOD_NAME, isByRef ? "RunByRef" : "Run");
         }
     }
 }

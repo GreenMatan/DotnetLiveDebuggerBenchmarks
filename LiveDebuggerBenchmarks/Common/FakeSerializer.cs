@@ -13,24 +13,7 @@ namespace LiveDebugger.Common
         /// items inside arbitrary buffer that does nothing.
         /// </summary>
         /// <param name="items"></param>
-        public static void Serialize(params object[] items)
-        {
-            if (items?.Length == 0)
-                return;
-
-            if (Buffer.Count < 1)
-            {
-                Buffer.Add(items[0]);
-                return;
-            }
-
-            foreach (var item in items)
-            {
-                Buffer[0] = item;
-            }
-        }
-
-        public static void SerializeSingle(object item)
+        public static void Serialize(object item)
         {
             if (Buffer.Count < 1)
             {
